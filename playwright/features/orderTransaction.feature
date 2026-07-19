@@ -13,3 +13,8 @@ Feature: Order Transaction
     Examples:
       | userEmail             | userPassword |
       | roynijaraa@gmail.com  | Testing@123  |
+
+  Scenario: Verify login fails with an incorrect password
+    Given the user is on landing page
+    When I login to portal with roynijaraa@gmail.com and WrongPassword123
+    Then the login page is still displayed
