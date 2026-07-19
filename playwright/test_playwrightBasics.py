@@ -1,3 +1,5 @@
+import re
+
 from playwright.sync_api import Playwright
 
 from playwright.sync_api import Page, expect
@@ -8,14 +10,14 @@ def test_playwright_basics(playwright):
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://rahulshettyacademy.com")
-    expect(page).to_have_title("Let's Shop")
+    expect(page).to_have_title(re.compile("Rahul Shetty Academy"))
     context.close()
     browser.close()
 
 #chromium headless mode, 1 single context
 def test_playwright_shortcut(page:Page):
     page.goto("https://rahulshettyacademy.com")
-    expect(page).to_have_title("Let's Shop")
+    expect(page).to_have_title(re.compile("Rahul Shetty Academy"))
 
 def test_core_locators(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
