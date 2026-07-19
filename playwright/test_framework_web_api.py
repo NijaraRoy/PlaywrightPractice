@@ -1,4 +1,5 @@
 import json
+#pytest --browser_name chrome -m smoke -n 3 --tracing on --html=report.html
 
 import pytest
 from playwright.sync_api import Playwright, expect
