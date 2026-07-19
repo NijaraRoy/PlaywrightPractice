@@ -1,4 +1,5 @@
 import pytest
+from playwright.sync_api import expect
 from pytest_bdd import given, when, then, parsers, scenarios
 
 from pageObjects.login import LoginPage
@@ -51,3 +52,10 @@ def select_order_id(shared_data):
 def order_message_successfully_displayed(shared_data):
     order_details_page = shared_data["order_details_page"]
     order_details_page.verifyOrderMessage()
+
+
+@then("the login page is still displayed")
+def login_page_is_still_displayed(shared_data):
+    login_page = shared_data["login_page"]
+    expect(login_page.page.get_by_role("button", name="Login")).to_be_visible()
+    expect(login_page.page.get_by_role("button", name="  ORDERS")).not_to_be_visible()
